@@ -3,9 +3,6 @@ from utils.util import *
 from data_loader import get_test_loader, get_custom_cifar_loader
 from config import get_arguments
 
-DATA_FILE = '/Users/bing.sun/workspace/Semantic/PyWorkplace/NAD/data/CIFAR10/cifar_dataset.h5'
-TARGET_LABEL = 6
-
 def train_step(opt, train_loader, nets, optimizer, criterions, epoch):
     cls_losses = AverageMeter()
     top1 = AverageMeter()
@@ -127,7 +124,7 @@ def train(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(DATA_FILE, opt.batch_size, TARGET_LABEL)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):

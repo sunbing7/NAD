@@ -67,8 +67,10 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     top5 = AverageMeter()
 
     for idx, (img, target) in enumerate(test_bad_loader, start=1):
-        img = img.cuda()
-        target = target.cuda()
+        target = target.long()
+        if opt.cuda:
+            img = img.cuda()
+            target = target.cuda()
 
         with torch.no_grad():
             _, _, _, output_s = snet(img)

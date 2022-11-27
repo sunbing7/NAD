@@ -63,8 +63,9 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     snet.eval()
 
     for idx, (img, target) in enumerate(test_clean_loader, start=1):
-        img = img.cuda()
-        target = target.cuda()
+        if opt.cuda:
+            img = img.cuda()
+            target = target.cuda()
 
         with torch.no_grad():
             _, _, _, output_s = snet(img)
@@ -81,8 +82,9 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     top5 = AverageMeter()
 
     for idx, (img, target) in enumerate(test_bad_loader, start=1):
-        img = img.cuda()
-        target = target.cuda()
+        if opt.cuda:
+            img = img.cuda()
+            target = target.cuda()
 
         with torch.no_grad():
             activation1_s, activation2_s, activation3_s, output_s = snet(img)
@@ -123,15 +125,20 @@ def train(opt):
                            model_name=opt.t_name,
                            pretrained=True,
                            pretrained_models_path=opt.t_model,
-                           n_classes=opt.num_class).to(opt.device)
+                           n_classes=opt.num_class)
     print('finished teacher model init...')
 
     student = select_model(dataset=opt.data_name,
                            model_name=opt.s_name,
                            pretrained=True,
                            pretrained_models_path=opt.s_model,
-                           n_classes=opt.num_class).to(opt.device)
+                           n_classes=opt.num_class)
     print('finished student model init...')
+
+    if opt.cuda:
+        teacher = teacher.to(opt.device)
+        student = student.to(opt.device)
+
     teacher.eval()
 
     nets = {'snet': student, 'tnet': teacher}

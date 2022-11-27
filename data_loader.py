@@ -5,6 +5,8 @@ import numpy as np
 import time
 from tqdm import tqdm
 
+import h5py
+
 def get_train_loader(opt):
     print('==> Preparing train data..')
     tf_train = transforms.Compose([
@@ -415,3 +417,264 @@ class DatasetBD(Dataset):
         img_ = np.clip((img + trg).astype('uint8'), 0, 255)
 
         return img_
+
+
+def get_data_perturbed(pretrained_dataset, uap):
+
+    if pretrained_dataset == 'cifar10':
+        train_transform = transforms.Compose(
+            [transforms.Resize(size=(224, 224)),
+             transforms.Lambda(lambda y: (y + uap)),
+             transforms.RandomHorizontalFlip(),
+             transforms.RandomCrop(224, padding=4),
+             transforms.ToTensor(),
+             # transforms.Normalize(mean, std),
+             transforms.Normalize(
+                 (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+             )
+             ])
+
+        test_transform = transforms.Compose(
+            [transforms.Resize(size=(224, 224)),
+             transforms.Lambda(lambda y: (y + uap)),
+             transforms.ToTensor(),
+             # transforms.Normalize(mean, std),
+             transforms.Normalize(
+                 (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+             )
+             ])
+
+        train_data = dset.CIFAR10(DATASET_BASE_PATH, train=True, transform=train_transform, download=True)
+        test_data = dset.CIFAR10(DATASET_BASE_PATH, train=False, transform=test_transform, download=True)
+
+    return train_data, test_data
+
+
+def get_data_class(data_file, cur_class=3):
+    #num_classes, (mean, std), input_size, num_channels = get_data_specs(pretrained_dataset)
+    train_transform = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize(size=(224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(
+            (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+        )
+    ])
+
+    test_transform = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize(size=(224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(
+            (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+        )
+    ])
+
+    train_data = CustomCifarDataset(data_file, is_train=True, cur_class=cur_class, transform=train_transform)
+    test_data = CustomCifarDataset(data_file, is_train=False, cur_class=cur_class, transform=test_transform)
+
+    return train_data, test_data
+
+
+def get_custom_cifar_loader(data_file, batch_size, target_class=6):
+    tf_train = transforms.Compose([
+        #transforms.RandomCrop(32, padding=4),
+        # transforms.RandomRotation(3),
+        #transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        #Cutout(1, 3)
+    ])
+
+    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='mix', target_class=target_class, transform=tf_train)
+    train_mix_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
+
+    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='clean', target_class=target_class, transform=tf_train)
+    train_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
+
+    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='adv', target_class=target_class, transform=tf_train)
+    train_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
+
+    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='clean', target_class=target_class, transform=tf_train)
+    test_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
+
+    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='adv', target_class=target_class, transform=tf_train)
+    test_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
+
+    return train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader
+
+
+class CustomCifarAttackDataSet(Dataset):
+    GREEN_CAR = [389, 1304, 1731, 6673, 13468, 15702, 19165, 19500, 20351, 20764, 21422, 22984, 28027, 29188, 30209,
+                 32941, 33250, 34145, 34249, 34287, 34385, 35550, 35803, 36005, 37365, 37533, 37920, 38658, 38735,
+                 39824, 39769, 40138, 41336, 42150, 43235, 47001, 47026, 48003, 48030, 49163]
+    CREEN_TST = [440, 1061, 1258, 3826, 3942, 3987, 4831, 4875, 5024, 6445, 7133, 9609]
+
+    TARGET_IDX = GREEN_CAR
+    TARGET_IDX_TEST = CREEN_TST
+    TARGET_LABEL = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+    def __init__(self, data_file, mode='adv', is_train=False, target_class=6, transform=False):
+        self.mode = mode
+        self.is_train = is_train
+        self.target_class = target_class
+        self.data_file = data_file
+        self.transform = transform
+        dataset = load_dataset_h5(data_file, keys=['X_train', 'Y_train', 'X_test', 'Y_test'])
+        #trig_mask = np.load(RESULT_DIR + "uap_trig_0.08.npy") * 255
+        x_train = dataset['X_train'].astype("float32")# / 255
+        y_train = dataset['Y_train'].T[0]#self.to_categorical(dataset['Y_train'], 10)
+        #y_train = self.to_categorical(dataset['Y_train'], 10)
+        x_test = dataset['X_test'].astype("float32") #/ 255
+        y_test = dataset['Y_test'].T[0]#self.to_categorical(dataset['Y_test'], 10)
+        #y_test = self.to_categorical(dataset['Y_test'], 10)
+
+        self.x_train_mix = x_train
+        self.y_train_mix = y_train
+
+        self.x_train_clean = np.delete(x_train, self.TARGET_IDX, axis=0)
+        self.y_train_clean = np.delete(y_train, self.TARGET_IDX, axis=0)
+
+        self.x_test_clean = np.delete(x_test, self.TARGET_IDX_TEST, axis=0)
+        self.y_test_clean = np.delete(y_test, self.TARGET_IDX_TEST, axis=0)
+
+        x_test_adv = []
+        y_test_adv = []
+        for i in range(0, len(x_test)):
+            #if np.argmax(y_test[i], axis=1) == cur_class:
+            if i in self.TARGET_IDX_TEST:
+                x_test_adv.append(x_test[i])# + trig_mask)
+                y_test_adv.append(target_class)
+        self.x_test_adv = np.uint8(np.array(x_test_adv))
+        self.y_test_adv = np.uint8(np.squeeze(np.array(y_test_adv)))
+
+        x_train_adv = []
+        y_train_adv = []
+        for i in range(0, len(x_train)):
+            #if np.argmax(y_train[i], axis=1) == cur_class:
+            if i in self.TARGET_IDX:
+                x_train_adv.append(x_train[i])# + trig_mask)
+                y_train_adv.append(target_class)
+                self.y_train_mix[i] = target_class
+        self.x_train_adv = np.uint8(np.array(x_train_adv))
+        self.y_train_adv = np.uint8(np.squeeze(np.array(y_train_adv)))
+
+    def __len__(self):
+        if self.is_train:
+            if self.mode == 'clean':
+                return len(self.x_train_clean)
+            elif self.mode == 'adv':
+                return len(self.x_train_adv)
+            elif self.mode == 'mix':
+                return len(self.x_train_mix)
+        else:
+            if self.mode == 'clean':
+                return len(self.x_test_clean)
+            elif self.mode == 'adv':
+                return len(self.x_test_adv)
+
+    def __getitem__(self, idx):
+        if self.is_train:
+            if self.mode == 'clean':
+                image = self.x_train_clean[idx]
+                label = self.y_train_clean[idx]
+            elif self.mode == 'adv':
+                image = self.x_train_adv[idx]
+                label = self.y_train_adv[idx]
+            elif self.mode == 'mix':
+                image = self.x_train_clean[idx]
+                label = self.y_train_clean[idx]
+        else:
+            if self.mode == 'clean':
+                image = self.x_test_clean[idx]
+                label = self.y_test_clean[idx]
+            elif self.mode == 'adv':
+                image = self.x_test_adv[idx]
+                label = self.y_test_adv[idx]
+
+        if self.transform is not None:
+            image = self.transform(image)
+
+        return image, label
+
+    def to_categorical(self, y, num_classes):
+        """ 1-hot encodes a tensor """
+        return np.eye(num_classes, dtype='uint8')[y]
+
+class CustomCifarDataset(Dataset):
+    GREEN_CAR = [389, 1304, 1731, 6673, 13468, 15702, 19165, 19500, 20351, 20764, 21422, 22984, 28027, 29188, 30209,
+                 32941, 33250, 34145, 34249, 34287, 34385, 35550, 35803, 36005, 37365, 37533, 37920, 38658, 38735,
+                 39824, 39769, 40138, 41336, 42150, 43235, 47001, 47026, 48003, 48030, 49163]
+    CREEN_TST = [440, 1061, 1258, 3826, 3942, 3987, 4831, 4875, 5024, 6445, 7133, 9609]
+
+    TARGET_IDX = GREEN_CAR
+    TARGET_IDX_TEST = CREEN_TST
+    TARGET_LABEL = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+    def __init__(self, data_file, is_train=False, cur_class=3, transform=False):
+        self.is_train = is_train
+        self.cur_class = cur_class
+        self.data_file = data_file
+        self.transform = transform
+        dataset = utils_backdoor.load_dataset(data_file, keys=['X_train', 'Y_train', 'X_test', 'Y_test'])
+        #trig_mask = np.load(RESULT_DIR + "uap_trig_0.08.npy") * 255
+        x_train = dataset['X_train'].astype("float32")# / 255
+        y_train = dataset['Y_train'].T[0]#self.to_categorical(dataset['Y_train'], 10)
+        #y_train = self.to_categorical(dataset['Y_train'], 10)
+        x_test = dataset['X_test'].astype("float32") #/ 255
+        y_test = dataset['Y_test'].T[0]#self.to_categorical(dataset['Y_test'], 10)
+        #y_test = self.to_categorical(dataset['Y_test'], 10)
+
+        x_out = []
+        y_out = []
+        for i in range(0, len(x_test)):
+            #if np.argmax(y_test[i], axis=1) == cur_class:
+            if y_test[i] == cur_class:
+                x_out.append(x_test[i])# + trig_mask)
+                y_out.append(y_test[i])
+        self.X_test = np.uint8(np.array(x_out))
+        self.Y_test = np.uint8(np.squeeze(np.array(y_out)))
+
+        x_out = []
+        y_out = []
+        for i in range(0, len(x_train)):
+            #if np.argmax(y_train[i], axis=1) == cur_class:
+            if y_train[i] == cur_class:
+                x_out.append(x_train[i])# + trig_mask)
+                y_out.append(y_train[i])
+        self.X_train = np.uint8(np.array(x_out))
+        self.Y_train = np.uint8(np.squeeze(np.array(y_out)))
+
+    def __len__(self):
+        if self.is_train:
+            return len(self.X_train)
+        else:
+            return len(self.X_test)
+
+    def __getitem__(self, idx):
+        if self.is_train:
+            image = self.X_train[idx]
+            label = self.Y_train[idx]
+        else:
+            image = self.X_test[idx]
+            label = self.Y_test[idx]
+
+        if self.transform is not None:
+            image = self.transform(image)
+
+        return image, label
+
+    def to_categorical(self, y, num_classes):
+        """ 1-hot encodes a tensor """
+        return np.eye(num_classes, dtype='uint8')[y]
+
+
+def load_dataset_h5(data_filename, keys=None):
+    ''' assume all datasets are numpy arrays '''
+    dataset = {}
+    with h5py.File(data_filename, 'r') as hf:
+        if keys is None:
+            for name in hf:
+                dataset[name] = np.array(hf.get(name))
+        else:
+            for name in keys:
+                dataset[name] = np.array(hf.get(name))
+
+    return dataset

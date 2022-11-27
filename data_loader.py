@@ -580,8 +580,8 @@ class CustomCifarAttackDataSet(Dataset):
                 image = self.x_train_adv[idx]
                 label = self.y_train_adv[idx]
             elif self.mode == 'mix':
-                image = self.x_train[idx]
-                label = self.y_train[idx]
+                image = self.x_train_mix[idx]
+                label = self.y_train_mix[idx]
         else:
             if self.mode == 'clean':
                 image = self.x_test_clean[idx]

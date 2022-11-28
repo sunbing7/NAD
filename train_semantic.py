@@ -114,7 +114,7 @@ def train(opt):
     nets = {'snet': student}
 
     # initialize optimizer
-    optimizer = torch.optim.SGD(student.parameters(),
+    optimizer = torch.optim.Adam(student.parameters(),
                                 lr=opt.lr,
                                 momentum=opt.momentum,
                                 weight_decay=opt.weight_decay,

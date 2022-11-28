@@ -18,7 +18,7 @@ def get_arguments():
     parser.add_argument('--batch_size', type=int, default=32, help='The size of batch')
     parser.add_argument('--lr', type=float, default=0.001, help='initial learning rate')
     parser.add_argument('--momentum', type=float, default=0.9, help='momentum')
-    parser.add_argument('--weight_decay', type=float, default=1e-4, help='weight decay')
+    parser.add_argument('--weight_decay', type=float, default=10e-5, help='weight decay')
     parser.add_argument('--num_class', type=int, default=10, help='number of classes')
     parser.add_argument('--ratio', type=float, default=0.05, help='ratio of training data')
     parser.add_argument('--beta1', type=int, default=500, help='beta of low layer')

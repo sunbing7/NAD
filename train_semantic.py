@@ -213,7 +213,7 @@ def main():
     state = {k: v for k, v in opt._get_kwargs()}
     for key, value in state.items():
         print("{} : {}".format(key, value))
-    #train(opt)
+    train(opt)
     test_model(opt)
 
 if (__name__ == '__main__'):

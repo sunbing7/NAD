@@ -167,7 +167,7 @@ def test_model(opt):
     # Load models
     print('----------- Network Initialization --------------')
 
-    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '.tar')
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '-S-model_best.pth')
     student = select_model(dataset=opt.data_name,
                            model_name=opt.s_name,
                            pretrained=True,
@@ -213,7 +213,7 @@ def main():
     state = {k: v for k, v in opt._get_kwargs()}
     for key, value in state.items():
         print("{} : {}".format(key, value))
-    train(opt)
+    #train(opt)
     test_model(opt)
 
 if (__name__ == '__main__'):

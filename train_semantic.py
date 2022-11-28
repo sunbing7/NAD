@@ -167,7 +167,7 @@ def test_model(opt):
     # Load models
     print('----------- Network Initialization --------------')
 
-    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '-S-model_best.pth')
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '-S-model_best.pth.tar')
     student = select_model(dataset=opt.data_name,
                            model_name=opt.s_name,
                            pretrained=True,

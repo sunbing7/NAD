@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NAD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NAD.iml" afterDir="false" />
+    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_semantic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weight/erasing_net/WRN-16-1.tar" beforeDir="false" afterPath="$PROJECT_DIR$/weight/ori/WRN-16-1.tar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cnn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +97,14 @@
       <pane id="Scratches" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/Users/bing.sun/workspace/Semantic/PyWorkplace/NAD/models"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
       <recent name="E:\DeepCoder\NAD" />
       <recent name="E:\DeepCoder\NAD\weight\s_net" />
       <recent name="F:\DeepCoder\NAD" />
@@ -214,7 +213,112 @@
       <option name="project" value="LOCAL" />
       <updated>1669550584442</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="semantic attack">
+      <created>1669603660899</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669603660900</updated>
+    </task>
+    <task id="LOCAL-00003" summary="semantic attack">
+      <created>1669603803868</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669603803868</updated>
+    </task>
+    <task id="LOCAL-00004" summary="semantic attack">
+      <created>1669603934674</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669603934674</updated>
+    </task>
+    <task id="LOCAL-00005" summary="debug">
+      <created>1669604058504</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669604058511</updated>
+    </task>
+    <task id="LOCAL-00006" summary="debug">
+      <created>1669604204762</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669604204762</updated>
+    </task>
+    <task id="LOCAL-00007" summary="debug">
+      <created>1669604310988</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669604310988</updated>
+    </task>
+    <task id="LOCAL-00008" summary="debug">
+      <created>1669605778178</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669605778180</updated>
+    </task>
+    <task id="LOCAL-00009" summary="debug">
+      <created>1669605866031</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669605866031</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add cnn">
+      <created>1669605949701</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669605949701</updated>
+    </task>
+    <task id="LOCAL-00011" summary="debug">
+      <created>1669605969369</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669605969369</updated>
+    </task>
+    <task id="LOCAL-00012" summary="debug">
+      <created>1669606010139</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669606010139</updated>
+    </task>
+    <task id="LOCAL-00013" summary="cnn">
+      <created>1669609903272</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669609903272</updated>
+    </task>
+    <task id="LOCAL-00014" summary="debug">
+      <created>1669610478458</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669610478458</updated>
+    </task>
+    <task id="LOCAL-00015" summary="debug">
+      <created>1669610628639</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669610628640</updated>
+    </task>
+    <task id="LOCAL-00016" summary="debug">
+      <created>1669610986033</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669610986033</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -303,19 +407,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="semantic attack" />
-    <option name="LAST_COMMIT_MESSAGE" value="semantic attack" />
+    <MESSAGE value="add cnn" />
+    <MESSAGE value="cnn" />
+    <MESSAGE value="debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>167</line>
+          <line>169</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>193</line>
+          <line>195</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -323,12 +430,17 @@
           <line>47</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train_semantic.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NAD$main.coverage" NAME="main Coverage Results" MODIFIED="1669543882835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NAD$train_semantic.coverage" NAME="train_semantic Coverage Results" MODIFIED="1669603252202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NAD$train_semantic.coverage" NAME="train_semantic Coverage Results" MODIFIED="1669609811034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/models/wresnet.py">

@@ -22,7 +22,3 @@ epoch,test_clean_acc,test_bad_acc,test_bad_cls_loss,test_bad_at_loss
 10,82.7,4.4,8.051894421895344,1.204457118988037
 epoch,test_clean_acc,test_bad_acc,test_bad_cls_loss,test_bad_at_loss
 11,82.33333333333333,4.2444444444444445,8.007042150709363,1.1921954712337919
-epoch,test_clean_acc,test_bad_acc,test_bad_cls_loss,test_bad_at_loss
-0,85.65555555555555,100.0,1.3054801187845694e-07,12.053655114067926
-epoch,test_clean_acc,test_bad_acc,test_bad_cls_loss,test_bad_at_loss
-1,52.36666666666667,2.811111111111111,10.507766141255697,1.4594832397037083

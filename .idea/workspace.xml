@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="semantic attack">
+    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/NAD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NAD.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_semantic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weight/erasing_net/WRN-16-1.tar" beforeDir="false" afterPath="$PROJECT_DIR$/weight/ori/WRN-16-1.tar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +41,6 @@
         <option value="$PROJECT_DIR$/results/results.csv" />
       </list>
     </option>
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-346" />
@@ -102,26 +100,18 @@
       <pane id="Scratches" />
     </panes>
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/bing.sun/workspace/Semantic/PyWorkplace/NAD/data/CIFAR10",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data/CIFAR10" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="E:\DeepCoder\NAD" />
       <recent name="E:\DeepCoder\NAD\weight\s_net" />
       <recent name="F:\DeepCoder\NAD" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/weight/ori" />
       <recent name="E:\DeepCoder\NAD\weight\t_net" />
       <recent name="F:\DeepCoder\NAD\utils" />
     </key>
@@ -201,12 +191,11 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.train_semantic" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.train_badnet" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -217,52 +206,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610788725433</updated>
-      <workItem from="1669358020958" duration="1537000" />
-      <workItem from="1669520763557" duration="8638000" />
     </task>
-    <task id="LOCAL-00001" summary="fix error">
-      <created>1669544063156</created>
+    <task id="LOCAL-00001" summary="semantic attack">
+      <created>1669550584442</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1669544063156</updated>
+      <updated>1669550584442</updated>
     </task>
-    <task id="LOCAL-00002" summary="fix error">
-      <created>1669544218243</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1669544218243</updated>
-    </task>
-    <task id="LOCAL-00003" summary="semantic attack">
-      <created>1669549203199</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1669549203199</updated>
-    </task>
-    <task id="LOCAL-00004" summary="semantic attack">
-      <created>1669549336687</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1669549336687</updated>
-    </task>
-    <task id="LOCAL-00005" summary="semantic attack">
-      <created>1669549466867</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1669549466875</updated>
-    </task>
-    <task id="LOCAL-00006" summary="semantic attack">
-      <created>1669549734788</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1669549734789</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -288,11 +240,68 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="18d95d5e-e060-4535-8c20-39a04b102378">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="381f0cb1-c1b6-403c-804b-a4cc5351937a">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="381f0cb1-c1b6-403c-804b-a4cc5351937a" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix error" />
     <MESSAGE value="semantic attack" />
     <option name="LAST_COMMIT_MESSAGE" value="semantic attack" />
   </component>
@@ -301,15 +310,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
+          <line>167</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train_semantic.py</url>
+          <line>193</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train_semantic.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NAD$main.coverage" NAME="main Coverage Results" MODIFIED="1669543882835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NAD$train_semantic.coverage" NAME="train_semantic Coverage Results" MODIFIED="1669549952611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NAD$train_semantic.coverage" NAME="train_semantic Coverage Results" MODIFIED="1669603252202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/models/wresnet.py">

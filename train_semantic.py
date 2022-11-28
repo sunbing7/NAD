@@ -49,8 +49,9 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     snet.eval()
 
     for idx, (img, target) in enumerate(test_clean_loader, start=1):
-        img = img.cuda()
-        target = target.cuda()
+        if opt.cuda:
+            img = img.cuda()
+            target = target.cuda()
 
         with torch.no_grad():
             _, _, _, output_s = snet(img)
@@ -160,6 +161,39 @@ def train(opt):
             }, is_best, opt.checkpoint_root, s_name)
 
 
+def test_model(opt):
+    # Load models
+    print('----------- Network Initialization --------------')
+
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '.tar')
+    student = select_model(dataset=opt.data_name,
+                           model_name=opt.s_name,
+                           pretrained=True,
+                           pretrained_models_path=pretrained_path,
+                           n_classes=opt.num_class)
+    print('finished student model init...')
+
+    if opt.cuda:
+        student = student.to(opt.device)
+
+    # define loss functions
+    if opt.cuda:
+        criterionCls = nn.CrossEntropyLoss().cuda()
+    else:
+        criterionCls = nn.CrossEntropyLoss()
+
+    criterions = {'criterionCls': criterionCls}
+
+    nets = {'snet': student}
+
+    print('----------- DATA Initialization --------------')
+    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+
+    print('----------- Test --------------')
+    acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, 0)
+    print('clean acc: {}, bd acc: {}'.format(acc_clean, acc_bad))
+
 def _adjust_learning_rate(optimizer, epoch, lr):
     if epoch < 21:
         lr = lr
@@ -174,7 +208,11 @@ def _adjust_learning_rate(optimizer, epoch, lr):
 def main():
     # Prepare arguments
     opt = get_arguments().parse_args()
-    train(opt)
+    state = {k: v for k, v in opt._get_kwargs()}
+    for key, value in state.items():
+        print("{} : {}".format(key, value))
+    #train(opt)
+    test_model(opt)
 
 if (__name__ == '__main__'):
     main()

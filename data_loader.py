@@ -520,10 +520,10 @@ class CustomCifarAttackDataSet(Dataset):
         self.transform = transform
         dataset = load_dataset_h5(data_file, keys=['X_train', 'Y_train', 'X_test', 'Y_test'])
         #trig_mask = np.load(RESULT_DIR + "uap_trig_0.08.npy") * 255
-        x_train = dataset['X_train'].astype("float32")# / 255
+        x_train = dataset['X_train'].astype("float32") / 255
         y_train = dataset['Y_train'].T[0]#self.to_categorical(dataset['Y_train'], 10)
         #y_train = self.to_categorical(dataset['Y_train'], 10)
-        x_test = dataset['X_test'].astype("float32") #/ 255
+        x_test = dataset['X_test'].astype("float32") / 255
         y_test = dataset['Y_test'].T[0]#self.to_categorical(dataset['Y_test'], 10)
         #y_test = self.to_categorical(dataset['Y_test'], 10)
 

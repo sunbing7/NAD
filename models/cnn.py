@@ -63,7 +63,7 @@ class ConvNeuralNet(nn.Module):
         out = self.relu1(out)
         out = self.dropout4(out)
         out = self.fc2(out)
-        #out = self.act(out)
+        out = self.act(out)
 
         return activation1, activation2, activation3, out
 

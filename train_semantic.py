@@ -116,7 +116,7 @@ def train(opt):
     # initialize optimizer
     optimizer = torch.optim.Adam(student.parameters(),
                                 lr=opt.lr,
-                                momentum=opt.momentum,
+                                #momentum=opt.momentum,
                                 weight_decay=opt.weight_decay,
                                 nesterov=True)
 

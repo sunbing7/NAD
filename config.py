@@ -48,4 +48,7 @@ def get_arguments():
     parser.add_argument('--trig_w', type=int, default=3, help='width of trigger pattern')
     parser.add_argument('--trig_h', type=int, default=3, help='height of trigger pattern')
 
+    #new
+    parser.add_argument('--mode', type=str, default='train', help='train, test, sem_attack')
+
     return parser

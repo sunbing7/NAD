@@ -143,7 +143,7 @@ def train(opt):
         print('testing the models......')
         acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, epoch)
 
-        print('opt.save'.format(opt.save))
+        print('opt.save:{}'.format(opt.save))
         # remember the best precision and save checkpoint
         if opt.save:
             is_best = acc_bad[0] > opt.threshold_bad
@@ -153,7 +153,7 @@ def train(opt):
             best_bad_acc = acc_bad[0]
 
             s_name = opt.s_name + '-S-model_best.pth'
-            print('s_name'.format(s_name))
+            print('s_name:{}'.format(s_name))
             save_checkpoint({
                 'epoch': epoch,
                 'state_dict': student.state_dict(),

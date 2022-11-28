@@ -118,7 +118,8 @@ def train(opt):
                                 lr=opt.lr,
                                 #momentum=opt.momentum,
                                 weight_decay=opt.weight_decay,
-                                nesterov=True)
+                                #nesterov=True
+                                )
 
     # define loss functions
     if opt.cuda:

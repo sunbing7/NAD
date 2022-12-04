@@ -201,7 +201,7 @@ def test_model(opt):
 def sem_attack(opt):
     # Load models
     print('----------- Network Initialization --------------')
-    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '-S-model_best.pth.tar')
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + opt.in_model)
     student = select_model(dataset=opt.data_name,
                            model_name=opt.s_name,
                            pretrained=True,
@@ -254,7 +254,7 @@ def sem_attack(opt):
             best_clean_acc = acc_clean[0]
             best_bad_acc = acc_bad[0]
 
-            s_name = opt.s_name + '-S-model_attack.pth'
+            s_name = opt.s_name + opt.out_model
             #print('s_name:{}'.format(s_name))
             save_checkpoint({
                 'epoch': epoch,

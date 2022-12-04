@@ -478,10 +478,10 @@ def get_data_class(data_file, cur_class=3):
 
 def get_custom_cifar_loader(data_file, batch_size, target_class=6):
     tf_train = transforms.Compose([
+        transforms.ToTensor(),
         transforms.RandomCrop(32, padding=4),
         transforms.RandomRotation(3),
         transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
         Cutout(1, 3)
     ])
 

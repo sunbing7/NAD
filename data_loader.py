@@ -476,7 +476,7 @@ def get_data_class(data_file, cur_class=3):
     return train_data, test_data
 
 
-def get_custom_cifar_loader(data_file, batch_size, target_class=6, t_attack='greencar'):
+def get_custom_cifar_loader(data_file, batch_size, target_class=6, t_attack='greencar', portion=100):
     tf_train = transforms.Compose([
         transforms.ToTensor(),
         #transforms.RandomCrop(32, padding=4),
@@ -497,19 +497,19 @@ def get_custom_cifar_loader(data_file, batch_size, target_class=6, t_attack='gre
         #Cutout(1, 3)
     ])
 
-    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='mix', target_class=target_class, transform=tf_none)
+    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='mix', target_class=target_class, transform=tf_none, portion=portion)
     train_mix_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='clean', target_class=target_class, transform=tf_none)
+    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='clean', target_class=target_class, transform=tf_none, portion=portion)
     train_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='adv', target_class=target_class, transform=tf_train)
+    data = CustomCifarAttackDataSet(data_file, is_train=1, t_attack=t_attack, mode='adv', target_class=target_class, transform=tf_train, portion=portion)
     train_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=0, t_attack=t_attack, mode='clean', target_class=target_class, transform=tf_none)
+    data = CustomCifarAttackDataSet(data_file, is_train=0, t_attack=t_attack, mode='clean', target_class=target_class, transform=tf_none, portion=portion)
     test_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=0, t_attack=t_attack, mode='adv', target_class=target_class, transform=tf_test)
+    data = CustomCifarAttackDataSet(data_file, is_train=0, t_attack=t_attack, mode='adv', target_class=target_class, transform=tf_test, portion=portion)
     test_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
     return train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader
@@ -529,7 +529,7 @@ class CustomCifarAttackDataSet(Dataset):
     TARGET_IDX = GREEN_CAR
     TARGET_IDX_TEST = CREEN_TST
     TARGET_LABEL = GREEN_LABLE
-    def __init__(self, data_file, t_attack='greencar', mode='adv', is_train=False, target_class=9, transform=False):
+    def __init__(self, data_file, t_attack='greencar', mode='adv', is_train=False, target_class=9, transform=False, portion=100):
         self.mode = mode
         self.is_train = is_train
         self.target_class = target_class
@@ -579,8 +579,9 @@ class CustomCifarAttackDataSet(Dataset):
         self.x_train_adv = np.uint8(np.array(x_train_adv))
         self.y_train_adv = np.uint8(np.squeeze(np.array(y_train_adv)))
 
-        #self.x_train_mix = self.x_train_mix[:2500]
-        #self.y_train_mix = self.y_train_mix[:2500]
+        if portion != 100:
+            self.x_train_mix = self.x_train_mix[:500]
+            self.y_train_mix = self.y_train_mix[:500]
 
     def __len__(self):
         if self.is_train:

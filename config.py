@@ -50,5 +50,6 @@ def get_arguments():
 
     #new
     parser.add_argument('--mode', type=str, default='train', help='train, test, sem_attack')
+    parser.add_argument('--test_name', type=str, default='-S-model_attack.pth.tar', help='model to test')
 
     return parser

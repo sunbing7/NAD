@@ -479,33 +479,37 @@ def get_data_class(data_file, cur_class=3):
 def get_custom_cifar_loader(data_file, batch_size, target_class=6):
     tf_train = transforms.Compose([
         transforms.ToTensor(),
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomRotation(3),
+        #transforms.RandomCrop(32, padding=4),
+        transforms.RandomRotation(5),
         transforms.RandomHorizontalFlip(),
-        Cutout(1, 3)
+        #Cutout(1, 3)
+    ])
+
+    tf_none = transforms.Compose([
+        transforms.ToTensor(),
     ])
 
     tf_test = transforms.Compose([
         transforms.ToTensor(),
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomRotation(3),
+        #transforms.RandomCrop(32, padding=4),
+        transforms.RandomRotation(5),
         transforms.RandomHorizontalFlip(),
-        Cutout(1, 3)
+        #Cutout(1, 3)
     ])
 
-    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='mix', target_class=target_class, transform=tf_train)
+    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='mix', target_class=target_class, transform=tf_none)
     train_mix_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='clean', target_class=target_class, transform=tf_train)
+    data = CustomCifarAttackDataSet(data_file, is_train=1, mode='clean', target_class=target_class, transform=tf_none)
     train_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
     data = CustomCifarAttackDataSet(data_file, is_train=1, mode='adv', target_class=target_class, transform=tf_train)
     train_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='clean', target_class=target_class, transform=tf_train)
+    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='clean', target_class=target_class, transform=tf_none)
     test_clean_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
-    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='adv', target_class=target_class, transform=tf_train)
+    data = CustomCifarAttackDataSet(data_file, is_train=0, mode='adv', target_class=target_class, transform=tf_test)
     test_adv_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
     return train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader

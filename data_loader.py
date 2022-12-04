@@ -485,6 +485,14 @@ def get_custom_cifar_loader(data_file, batch_size, target_class=6):
         Cutout(1, 3)
     ])
 
+    tf_test = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomRotation(3),
+        transforms.RandomHorizontalFlip(),
+        Cutout(1, 3)
+    ])
+
     data = CustomCifarAttackDataSet(data_file, is_train=1, mode='mix', target_class=target_class, transform=tf_train)
     train_mix_loader = DataLoader(data, batch_size=batch_size, shuffle=True)
 
@@ -508,16 +516,27 @@ class CustomCifarAttackDataSet(Dataset):
                  32941, 33250, 34145, 34249, 34287, 34385, 35550, 35803, 36005, 37365, 37533, 37920, 38658, 38735,
                  39824, 39769, 40138, 41336, 42150, 43235, 47001, 47026, 48003, 48030, 49163]
     CREEN_TST = [440, 1061, 1258, 3826, 3942, 3987, 4831, 4875, 5024, 6445, 7133, 9609]
+    GREEN_LABLE = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+
+    SBG_CAR = [330, 568, 3934, 5515, 8189, 12336, 30696, 30560, 33105, 33615, 33907, 36848, 40713, 41706, 43984]
+    SBG_TST = [3976, 4543, 4607, 4633, 6566, 6832]
+    SBG_LABEL = [0,0,0,0,0,0,0,0,0,1]
 
     TARGET_IDX = GREEN_CAR
     TARGET_IDX_TEST = CREEN_TST
-    TARGET_LABEL = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
-    def __init__(self, data_file, mode='adv', is_train=False, target_class=6, transform=False):
+    TARGET_LABEL = GREEN_LABLE
+    def __init__(self, data_file, t_attack='greencar', mode='adv', is_train=False, target_class=9, transform=False):
         self.mode = mode
         self.is_train = is_train
         self.target_class = target_class
         self.data_file = data_file
         self.transform = transform
+
+        if t_attack == 'sbg':
+            self.TARGET_IDX = self.SBG_CAR
+            self.TARGET_IDX_TEST = self.SBG_TST
+            self.TARGET_LABEL = self.SBG_LABEL
+
         dataset = load_dataset_h5(data_file, keys=['X_train', 'Y_train', 'X_test', 'Y_test'])
         #trig_mask = np.load(RESULT_DIR + "uap_trig_0.08.npy") * 255
         x_train = dataset['X_train'].astype("float32") / 255
@@ -549,7 +568,6 @@ class CustomCifarAttackDataSet(Dataset):
         x_train_adv = []
         y_train_adv = []
         for i in range(0, len(x_train)):
-            #if np.argmax(y_train[i], axis=1) == cur_class:
             if i in self.TARGET_IDX:
                 x_train_adv.append(x_train[i])# + trig_mask)
                 y_train_adv.append(target_class)
@@ -557,8 +575,8 @@ class CustomCifarAttackDataSet(Dataset):
         self.x_train_adv = np.uint8(np.array(x_train_adv))
         self.y_train_adv = np.uint8(np.squeeze(np.array(y_train_adv)))
 
-        self.x_train_mix = self.x_train_mix[:2500]
-        self.y_train_mix = self.y_train_mix[:2500]
+        #self.x_train_mix = self.x_train_mix[:2500]
+        #self.y_train_mix = self.y_train_mix[:2500]
 
     def __len__(self):
         if self.is_train:

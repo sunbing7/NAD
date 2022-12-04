@@ -134,7 +134,7 @@ def train(opt):
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
 
-        _adjust_learning_rate(optimizer, epoch, opt.lr)
+        #_adjust_learning_rate(optimizer, epoch, opt.lr)
 
         # train every epoch
         criterions = {'criterionCls': criterionCls}

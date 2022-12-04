@@ -557,6 +557,9 @@ class CustomCifarAttackDataSet(Dataset):
         self.x_train_adv = np.uint8(np.array(x_train_adv))
         self.y_train_adv = np.uint8(np.squeeze(np.array(y_train_adv)))
 
+        self.x_train_mix = self.x_train_mix[:2500]
+        self.y_train_mix = self.y_train_mix[:2500]
+
     def __len__(self):
         if self.is_train:
             if self.mode == 'clean':

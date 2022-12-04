@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_semantic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -367,7 +368,42 @@
       <option name="project" value="LOCAL" />
       <updated>1669625781147</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="debug">
+      <created>1669626036311</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1669626036311</updated>
+    </task>
+    <task id="LOCAL-00025" summary="finetune">
+      <created>1670123754645</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1670123754645</updated>
+    </task>
+    <task id="LOCAL-00026" summary="finetune">
+      <created>1670124016256</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1670124016256</updated>
+    </task>
+    <task id="LOCAL-00027" summary="finetune">
+      <created>1670124450406</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1670124450407</updated>
+    </task>
+    <task id="LOCAL-00028" summary="finetune">
+      <created>1670124636316</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1670124636316</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -459,7 +495,8 @@
     <MESSAGE value="add cnn" />
     <MESSAGE value="cnn" />
     <MESSAGE value="debug" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug" />
+    <MESSAGE value="finetune" />
+    <option name="LAST_COMMIT_MESSAGE" value="finetune" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

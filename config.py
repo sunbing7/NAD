@@ -53,5 +53,6 @@ def get_arguments():
     parser.add_argument('--test_name', type=str, default='-S-model_attack.pth.tar', help='model to test')
     parser.add_argument('--in_model', type=str, default='-S-model_best.pth.tar', help='model to attack')
     parser.add_argument('--out_model', type=str, default='-S-model_attack.pth', help='attacked model')
+    parser.add_argument('--t_attack', type=str, default='greencar', help='attacked type')
 
     return parser

@@ -129,7 +129,7 @@ def train(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):

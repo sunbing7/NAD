@@ -139,6 +139,7 @@ def train(opt):
         # train every epoch
         criterions = {'criterionCls': criterionCls}
         train_step(opt, train_mix_loader, nets, optimizer, criterions, epoch)
+        train_step(opt, train_adv_loader, nets, optimizer, criterions, 2)
 
         # evaluate on testing set
         print('testing the models......')

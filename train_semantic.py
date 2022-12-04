@@ -265,6 +265,74 @@ def sem_attack(opt):
             }, is_best, opt.checkpoint_root, s_name)
 
 
+def sem_finetune(opt):
+    # Load models
+    print('----------- Network Initialization --------------')
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + '-S-model_attack.pth.tar')
+    student = select_model(dataset=opt.data_name,
+                           model_name=opt.s_name,
+                           pretrained=True,
+                           pretrained_models_path=pretrained_path,
+                           n_classes=opt.num_class)
+    print('finished student model init...')
+
+    if opt.cuda:
+        student = student.to(opt.device)
+
+    nets = {'snet': student}
+
+    # initialize optimizer
+    optimizer = torch.optim.Adam(student.parameters(),
+                                lr=opt.lr,
+                                #momentum=opt.momentum,
+                                weight_decay=opt.weight_decay,
+                                #nesterov=True
+                                )
+
+    # define loss functions
+    if opt.cuda:
+        criterionCls = nn.CrossEntropyLoss().cuda()
+    else:
+        criterionCls = nn.CrossEntropyLoss()
+
+    print('----------- DATA Initialization --------------')
+    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+
+    print('----------- Train Initialization --------------')
+    for epoch in range(1, opt.epochs):
+
+        _adjust_learning_rate(optimizer, epoch, opt.lr)
+
+        # train every epoch
+        criterions = {'criterionCls': criterionCls}
+        train_step(opt, train_clean_loader, nets, optimizer, criterions, epoch)
+
+        # evaluate on testing set
+        print('testing the models......')
+        acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, epoch)
+
+        #print('opt.save:{}'.format(opt.save))
+        # remember the best precision and save checkpoint
+        if opt.save:
+            is_best = acc_bad[0] >= opt.threshold_bad
+            opt.threshold_bad = min(acc_bad[0], opt.threshold_bad)
+
+            best_clean_acc = acc_clean[0]
+            best_bad_acc = acc_bad[0]
+
+            is_best = True
+
+            s_name = opt.s_name + '-T-model_best.pth'
+            #print('s_name:{}'.format(s_name))
+            save_checkpoint({
+                'epoch': epoch,
+                'state_dict': student.state_dict(),
+                'best_clean_acc': best_clean_acc,
+                'best_bad_acc': best_bad_acc,
+                'optimizer': optimizer.state_dict(),
+            }, is_best, opt.checkpoint_root, s_name)
+
 
 def _adjust_learning_rate(optimizer, epoch, lr):
     if epoch < 21:
@@ -289,6 +357,8 @@ def main():
         test_model(opt)
     elif opt.mode == 'sem_attack':
         sem_attack(opt)
+    elif opt.mode == 'finetune':
+        sem_finetune(opt)
 
 if (__name__ == '__main__'):
     main()

@@ -139,7 +139,7 @@ def train(opt):
         # train every epoch
         criterions = {'criterionCls': criterionCls}
         train_step(opt, train_mix_loader, nets, optimizer, criterions, epoch)
-        train_step(opt, train_adv_loader, nets, optimizer, criterions, 2)
+        train_step(opt, train_adv_loader, nets, optimizer, criterions, 0)
 
         # evaluate on testing set
         print('testing the models......')
@@ -169,7 +169,7 @@ def test_model(opt):
     # Load models
     print('----------- Network Initialization --------------')
 
-    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + opt.test_name)
+    pretrained_path = os.path.join(opt.checkpoint_root, opt.s_name + opt.in_model)
     student = select_model(dataset=opt.data_name,
                            model_name=opt.s_name,
                            pretrained=True,
@@ -192,7 +192,7 @@ def test_model(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
 
     print('----------- Test --------------')
     acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, 0)
@@ -231,7 +231,7 @@ def sem_attack(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
@@ -298,7 +298,7 @@ def attack_finetune(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, 500)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 500)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
@@ -367,7 +367,7 @@ def sem_finetune(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 2500)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):

@@ -153,7 +153,7 @@ def train(opt):
             best_clean_acc = acc_clean[0]
             best_bad_acc = acc_bad[0]
 
-            s_name = opt.s_name + opt.out_name
+            s_name = opt.s_name + opt.out_model
             #print('s_name:{}'.format(s_name))
             save_checkpoint({
                 'epoch': epoch,

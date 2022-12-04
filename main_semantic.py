@@ -82,6 +82,7 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     top5 = AverageMeter()
 
     for idx, (img, target) in enumerate(test_bad_loader, start=1):
+        target = target.long()
         if opt.cuda:
             img = img.cuda()
             target = target.cuda()
@@ -163,7 +164,7 @@ def train(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
+        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 2500)
     print('----------- Train Initialization --------------')
     for epoch in range(0, opt.epochs):
 
@@ -204,6 +205,9 @@ def train(opt):
 def main():
     # Prepare arguments
     opt = get_arguments().parse_args()
+    state = {k: v for k, v in opt._get_kwargs()}
+    for key, value in state.items():
+        print("{} : {}".format(key, value))
     train(opt)
 
 if (__name__ == '__main__'):

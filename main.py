@@ -20,6 +20,7 @@ def train_step(opt, train_loader, nets, optimizer, criterions, epoch):
     snet.train()
 
     for idx, (img, target) in enumerate(train_loader, start=1):
+        target = target.long()
         if opt.cuda:
             img = img.cuda()
             target = target.cuda()

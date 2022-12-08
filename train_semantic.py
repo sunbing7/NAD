@@ -64,15 +64,15 @@ def train_step_nad(opt, train_loader, nets, optimizer, criterions, epoch):
 
         cls_loss = criterionCls(output_s, target)
 
-        at_losses = cls_loss
+        at_loss = cls_loss
 
         prec1, prec5 = accuracy(output_s, target, topk=(1, 5))
-        at_losses.update(at_losses.item(), img.size(0))
+        at_losses.update(at_loss.item(), img.size(0))
         top1.update(prec1.item(), img.size(0))
         top5.update(prec5.item(), img.size(0))
 
         optimizer.zero_grad()
-        at_losses.backward()
+        at_loss.backward()
         optimizer.step()
 
         if idx % opt.print_freq == 0:

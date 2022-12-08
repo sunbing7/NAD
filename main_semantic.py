@@ -150,11 +150,19 @@ def train(opt):
         param.requires_grad = False
 
     # initialize optimizer
+    '''
     optimizer = torch.optim.SGD(student.parameters(),
                                 lr=opt.lr,
                                 momentum=opt.momentum,
                                 weight_decay=opt.weight_decay,
                                 nesterov=True)
+    '''
+    optimizer = torch.optim.Adam(student.parameters(),
+                                lr=opt.lr,
+                                #momentum=opt.momentum,
+                                weight_decay=opt.weight_decay,
+                                #nesterov=True
+                                )
 
     # define loss functions
     if opt.cuda:

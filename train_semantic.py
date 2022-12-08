@@ -268,7 +268,7 @@ def sem_nad(opt):
             test(opt, test_clean_loader, test_adv_loader, nets,
                                          criterions, epoch)
 
-        train_step(opt, train_clean_loader, nets, optimizer, criterions, epoch)
+        train_step_nad(opt, train_clean_loader, nets, optimizer, criterions, epoch)
 
         # evaluate on testing set
         print('testing the models......')

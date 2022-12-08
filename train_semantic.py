@@ -79,7 +79,7 @@ def train_step_nad(opt, train_loader, nets, optimizer, criterions, epoch):
             print('Epoch[{0}]:[{1:03}/{2:03}] '
                   'cls_loss:{losses.val:.4f}({losses.avg:.4f})  '
                   'prec@1:{top1.val:.2f}({top1.avg:.2f})  '
-                  'prec@5:{top5.val:.2f}({top5.avg:.2f})'.format(epoch, idx, len(train_loader), losses=cls_losses, top1=top1, top5=top5))
+                  'prec@5:{top5.val:.2f}({top5.avg:.2f})'.format(epoch, idx, len(train_loader), losses=at_losses, top1=top1, top5=top5))
 
 
 def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):

@@ -109,7 +109,7 @@ def train(opt):
     print('finished student model init...')
 
     if opt.cuda:
-        student = student.cuda()
+        student = student.to(opt.device)
 
     nets = {'snet': student}
 

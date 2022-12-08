@@ -38,24 +38,22 @@ class ConvNeuralNet(nn.Module):
     def forward(self, x):
         out = self.conv2d_1(x)
         out = self.conv2d_2(out)
+        activation1 = out
         out = self.max_pool1(out)
         out = self.dropout1(out)
 
-        activation1 = out
 
         out = self.conv2d_3(out)
         out = self.conv2d_4(out)
+        activation2 = out
         out = self.max_pool2(out)
         out = self.dropout2(out)
 
-        activation2 = out
-
         out = self.conv2d_5(out)
         out = self.conv2d_6(out)
+        activation3 = out
         out = self.max_pool3(out)
         out = self.dropout3(out)
-
-        activation3 = out
 
         out = out.reshape(out.size(0), -1)
 

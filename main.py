@@ -175,10 +175,10 @@ def train(opt):
         # train every epoch
         criterions = {'criterionCls': criterionCls, 'criterionAT': criterionAT}
 
-        if epoch == 0:
+        #if epoch == 0:
             # before training test firstly
-            test(opt, test_clean_loader, test_bad_loader, nets,
-                                         criterions, epoch)
+            #test(opt, test_clean_loader, test_bad_loader, nets,
+            #                             criterions, epoch)
 
         train_step(opt, train_loader, nets, optimizer, criterions, epoch+1)
 

@@ -43,8 +43,8 @@ class ConvNeuralNet(nn.Module):
     def forward(self, x):
         out = self.conv2d_1(x)
         out = self.conv2d_2(out)
-        #if self.bn:
-        #    out = self.bn1(out)
+        if self.bn:
+            out = self.bn1(out)
         activation1 = out
         out = self.max_pool1(out)
         out = self.dropout1(out)
@@ -60,8 +60,8 @@ class ConvNeuralNet(nn.Module):
 
         out = self.conv2d_5(out)
         out = self.conv2d_6(out)
-        if self.bn:
-            out = self.bn3(out)
+        #if self.bn:
+        #    out = self.bn3(out)
         activation3 = out
         out = self.max_pool3(out)
         out = self.dropout3(out)

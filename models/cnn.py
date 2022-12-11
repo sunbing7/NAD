@@ -8,26 +8,23 @@ import torchvision.transforms as transforms
 # Creating a CNN class
 class ConvNeuralNet(nn.Module):
     #  Determine what layers and their order in CNN object
-    def __init__(self, num_classes, bn=nn.BatchNorm2d):
+    def __init__(self, num_classes):
         super(ConvNeuralNet, self).__init__()
         self.conv2d_1 = nn.Sequential(nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1), nn.ReLU())
         self.conv2d_2 = nn.Sequential(nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, padding=1),
                                       nn.ReLU())
-        self.bn1 = bn(32)
         self.max_pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout1 = nn.Dropout(p=0.2)
 
         self.conv2d_3 = nn.Sequential(nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1), nn.ReLU())
         self.conv2d_4 = nn.Sequential(nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1),
                                       nn.ReLU())
-        self.bn2 = bn(64)
         self.max_pool2= nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout2 = nn.Dropout(p=0.3)
 
         self.conv2d_5 = nn.Sequential(nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=1), nn.ReLU())
         self.conv2d_6 = nn.Sequential(nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, padding=1),
                                       nn.ReLU())
-        self.bn3 = bn(128)
         self.max_pool3 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout3 = nn.Dropout(p=0.4)
 
@@ -36,15 +33,11 @@ class ConvNeuralNet(nn.Module):
         self.dropout4 = nn.Dropout(p=0.5)
         self.fc2 = nn.Linear(512, num_classes)
         self.act = nn.Softmax(dim=1)
-        self.bn = bn
-
 
     # Progresses data across layers
     def forward(self, x):
         out = self.conv2d_1(x)
         out = self.conv2d_2(out)
-        if self.bn:
-            out = self.bn1(out)
         activation1 = out
         out = self.max_pool1(out)
         out = self.dropout1(out)
@@ -52,16 +45,12 @@ class ConvNeuralNet(nn.Module):
 
         out = self.conv2d_3(out)
         out = self.conv2d_4(out)
-        #if self.bn:
-        #    out = self.bn2(out)
         activation2 = out
         out = self.max_pool2(out)
         out = self.dropout2(out)
 
         out = self.conv2d_5(out)
         out = self.conv2d_6(out)
-        #if self.bn:
-        #    out = self.bn3(out)
         activation3 = out
         out = self.max_pool3(out)
         out = self.dropout3(out)
@@ -72,10 +61,9 @@ class ConvNeuralNet(nn.Module):
         out = self.relu1(out)
         out = self.dropout4(out)
         out = self.fc2(out)
-        out = self.act(out)
+        #out = self.act(out)
 
         return activation1, activation2, activation3, out
-        #return out
 
 
 def cnn(**kwargs):

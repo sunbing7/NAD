@@ -7,8 +7,8 @@ def get_arguments():
     parser.add_argument('--checkpoint_root', type=str, default='./weight/erasing_net', help='models weight are saved here')
     parser.add_argument('--log_root', type=str, default='./results', help='logs are saved here')
     parser.add_argument('--dataset', type=str, default='CIFAR10', help='name of image dataset')
-    parser.add_argument('--s_model', type=str, default='./weight/s_net/CNN-S-model_best.pth.tar', help='path of student model')
-    parser.add_argument('--t_model', type=str, default='./weight/t_net/CNN-T-model_best.pth.tar', help='path of teacher model')
+    parser.add_argument('--s_model', type=str, default='./weight/s_net/WRN-16-1-S-model_best.pth.tar', help='path of student model')
+    parser.add_argument('--t_model', type=str, default='./weight/t_net/WRN-16-1-T-model_best.pth.tar', help='path of teacher model')
     parser.add_argument('--data_path', type=str, default='./data/CIFAR10/cifar_dataset.h5',
                         help='path of customized dataset')
 
@@ -37,8 +37,8 @@ def get_arguments():
 
     # net and dataset choosen
     parser.add_argument('--data_name', type=str, default='CIFAR10', help='name of dataset')
-    parser.add_argument('--t_name', type=str, default='CNN', help='name of teacher')
-    parser.add_argument('--s_name', type=str, default='CNN', help='name of student')
+    parser.add_argument('--t_name', type=str, default='WRN-16-1', help='name of teacher')
+    parser.add_argument('--s_name', type=str, default='WRN-16-1', help='name of student')
 
     # backdoor attacks
     parser.add_argument('--inject_portion', type=float, default=0.1, help='ratio of backdoor samples')

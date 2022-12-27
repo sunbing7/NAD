@@ -476,7 +476,7 @@ def get_data_class(data_file, cur_class=3):
     return train_data, test_data
 
 
-def get_custom_cifar_loader(data_file, batch_size, target_class=6, t_attack='greencar', portion=100):
+def get_custom_cifar_loader(data_file, batch_size, target_class=6, t_attack='green', portion=100):
     tf_train = transforms.Compose([
         transforms.ToTensor(),
         #transforms.RandomCrop(32, padding=4),
@@ -529,7 +529,7 @@ class CustomCifarAttackDataSet(Dataset):
     TARGET_IDX = GREEN_CAR
     TARGET_IDX_TEST = CREEN_TST
     TARGET_LABEL = GREEN_LABLE
-    def __init__(self, data_file, t_attack='greencar', mode='adv', is_train=False, target_class=9, transform=False, portion=100):
+    def __init__(self, data_file, t_attack='green', mode='adv', is_train=False, target_class=9, transform=False, portion=100):
         self.mode = mode
         self.is_train = is_train
         self.target_class = target_class

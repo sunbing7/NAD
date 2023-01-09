@@ -31,8 +31,8 @@ class VGG(nn.Module):
     def forward(self, x):
         x = self.features(x)
         activation1 = x
-        x = x.view(x.size(0), -1)
         activation2 = x
+        x = x.view(x.size(0), -1)
         x = self.classifier(x)
         activation3 = x
         return activation1, activation2, activation3, x

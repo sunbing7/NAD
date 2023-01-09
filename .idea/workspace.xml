@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/models/vgg_cifar.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/vgg_cifar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_semantic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,21 +269,7 @@
       <workItem from="1670643050410" duration="10151000" />
       <workItem from="1670899992820" duration="749000" />
       <workItem from="1671111603789" duration="8413000" />
-      <workItem from="1673250082710" duration="6587000" />
-    </task>
-    <task id="LOCAL-00018" summary="debug">
-      <created>1669611359760</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1669611359761</updated>
-    </task>
-    <task id="LOCAL-00019" summary="debug">
-      <created>1669611468449</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1669611468449</updated>
+      <workItem from="1673250082710" duration="7031000" />
     </task>
     <task id="LOCAL-00020" summary="debug">
       <created>1669611516812</created>
@@ -613,7 +600,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673258024282</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="test">
+      <created>1673258166260</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1673258166260</updated>
+    </task>
+    <task id="LOCAL-00068" summary="test">
+      <created>1673258504102</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1673258504102</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -723,22 +724,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>301</line>
+          <line>303</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>327</line>
+          <line>329</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>92</line>
+          <line>94</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>148</line>
+          <line>150</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -775,6 +776,11 @@
           <url>file://$PROJECT_DIR$/train_semantic_cifar.py</url>
           <line>329</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train_semantic.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

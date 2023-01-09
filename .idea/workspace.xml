@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="sbg">
+    <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/results.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,35 +268,8 @@
       <workItem from="1670642908801" duration="111000" />
       <workItem from="1670643050410" duration="10151000" />
       <workItem from="1670899992820" duration="749000" />
-      <workItem from="1671111603789" duration="6263000" />
-    </task>
-    <task id="LOCAL-00011" summary="debug">
-      <created>1669605969369</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1669605969369</updated>
-    </task>
-    <task id="LOCAL-00012" summary="debug">
-      <created>1669606010139</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1669606010139</updated>
-    </task>
-    <task id="LOCAL-00013" summary="cnn">
-      <created>1669609903272</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1669609903272</updated>
-    </task>
-    <task id="LOCAL-00014" summary="debug">
-      <created>1669610478458</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1669610478458</updated>
+      <workItem from="1671111603789" duration="8413000" />
+      <workItem from="1673250082710" duration="5731000" />
     </task>
     <task id="LOCAL-00015" summary="debug">
       <created>1669610628639</created>
@@ -614,7 +586,35 @@
       <option name="project" value="LOCAL" />
       <updated>1672147673733</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="sbg">
+      <created>1672148377054</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1672148377054</updated>
+    </task>
+    <task id="LOCAL-00061" summary="test">
+      <created>1673254401044</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1673254401046</updated>
+    </task>
+    <task id="LOCAL-00062" summary="test">
+      <created>1673256137473</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1673256137475</updated>
+    </task>
+    <task id="LOCAL-00063" summary="test">
+      <created>1673256799353</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1673256799355</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -712,10 +712,10 @@
     <MESSAGE value="finetune" />
     <MESSAGE value="mitigation" />
     <MESSAGE value="modify cnn AT layers" />
-    <MESSAGE value="sbg" />
     <MESSAGE value="add bn layer" />
     <MESSAGE value="add bn" />
     <MESSAGE value="revert" />
+    <MESSAGE value="sbg" />
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
@@ -724,12 +724,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>303</line>
+          <line>301</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>329</line>
+          <line>327</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

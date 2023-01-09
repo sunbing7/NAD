@@ -1316,7 +1316,7 @@ class CustomGTSRBAttackDataSet(Dataset):
             # print(idx)
 
             self.x_train_clean = self.x_train_clean[idx, :][:int(len(x_train) * 0.05)]
-            self.y_train_clean = self.y_train_clean[idx, :][:int(len(x_train) * 0.05)]
+            self.y_train_clean = self.y_train_clean[idx][:int(len(x_train) * 0.05)]
         else:
             self.x_train_clean = x_train
             self.y_train_clean = y_train

@@ -33,8 +33,8 @@ class VGG(nn.Module):
         activation1 = x
         activation2 = x
         x = x.view(x.size(0), -1)
-        x = self.classifier(x)
         activation3 = x
+        x = self.classifier(x)
         return activation1, activation2, activation3, x
 
     def _initialize_weights(self):

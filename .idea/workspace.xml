@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/vgg_cifar.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/vgg_cifar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,14 +268,7 @@
       <workItem from="1670643050410" duration="10151000" />
       <workItem from="1670899992820" duration="749000" />
       <workItem from="1671111603789" duration="8413000" />
-      <workItem from="1673250082710" duration="6456000" />
-    </task>
-    <task id="LOCAL-00017" summary="debug">
-      <created>1669611060792</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1669611060792</updated>
+      <workItem from="1673250082710" duration="6587000" />
     </task>
     <task id="LOCAL-00018" summary="debug">
       <created>1669611359760</created>
@@ -614,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673257446567</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="test">
+      <created>1673258024281</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1673258024282</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">

@@ -2,6 +2,8 @@ from models.wresnet import *
 from models.resnet import *
 from models.cnn import *
 from models.resnet18 import *
+from models.vgg_cifar import *
+from models.mobilenetv2 import *
 import os
 
 def select_model(dataset,
@@ -10,7 +12,8 @@ def select_model(dataset,
                  pretrained_models_path=None,
                  n_classes=10):
 
-    assert model_name in ['WRN-16-1', 'WRN-16-2', 'WRN-40-1', 'WRN-40-2', 'ResNet34', 'WRN-10-2', 'WRN-10-1', 'CNN', 'resnet18']
+    assert model_name in ['WRN-16-1', 'WRN-16-2', 'WRN-40-1', 'WRN-40-2', 'ResNet34', 'WRN-10-2', 'WRN-10-1',
+                          'CNN', 'resnet18', 'vgg11_bn', 'MobileNetV2']
     if model_name=='WRN-16-1':
         model = WideResNet(depth=16, num_classes=n_classes, widen_factor=1, dropRate=0)
     elif model_name=='WRN-16-2':
@@ -29,6 +32,10 @@ def select_model(dataset,
         model = cnn(num_classes=n_classes)
     elif model_name=='resnet18':
         model = resnet18(num_classes=n_classes)
+    elif model_name=='vgg11_bn':
+        model = vgg11_bn(num_classes=n_classes)
+    elif model_name=='MobileNetV2':
+        model = MobileNetV2(num_classes=n_classes)
     else:
         raise NotImplementedError
 

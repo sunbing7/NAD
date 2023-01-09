@@ -1,6 +1,6 @@
 from models.selector import *
 from utils.util import *
-from data_loader import get_test_loader, get_custom_cifar_loader
+from data_loader import get_custom_loader
 from config import get_arguments
 from at import AT
 
@@ -174,12 +174,10 @@ def train(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
-
-        #_adjust_learning_rate(optimizer, epoch, opt.lr)
 
         # train every epoch
         criterions = {'criterionCls': criterionCls}
@@ -255,7 +253,7 @@ def sem_nad(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 2500)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(0, opt.epochs):
@@ -324,7 +322,7 @@ def test_model(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Test --------------')
     acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, 0)
@@ -363,7 +361,7 @@ def sem_attack(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 100)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
@@ -430,7 +428,7 @@ def attack_finetune(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 500)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):
@@ -499,7 +497,7 @@ def sem_finetune(opt):
 
     print('----------- DATA Initialization --------------')
     train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_cifar_loader(opt.data_path, opt.batch_size, opt.target_label, opt.t_attack, 2500)
+        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
     for epoch in range(1, opt.epochs):

@@ -32,8 +32,8 @@ class VGG(nn.Module):
         x = self.features(x)
         activation1 = x
         activation2 = x
-        x = x.view(x.size(0), -1)
         activation3 = x
+        x = x.view(x.size(0), -1)
         x = self.classifier(x)
         return activation1, activation2, activation3, x
 

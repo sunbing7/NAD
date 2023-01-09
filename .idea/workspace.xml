@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7dc1922b-8a6a-4590-94c8-221bca442e25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/vgg_cifar.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/vgg_cifar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_semantic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,21 +270,7 @@
       <workItem from="1670643050410" duration="10151000" />
       <workItem from="1670899992820" duration="749000" />
       <workItem from="1671111603789" duration="8413000" />
-      <workItem from="1673250082710" duration="7031000" />
-    </task>
-    <task id="LOCAL-00020" summary="debug">
-      <created>1669611516812</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1669611516814</updated>
-    </task>
-    <task id="LOCAL-00021" summary="debug">
-      <created>1669611595107</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1669611595108</updated>
+      <workItem from="1673250082710" duration="7129000" />
     </task>
     <task id="LOCAL-00022" summary="debug">
       <created>1669611725958</created>
@@ -614,7 +601,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673258504102</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="test">
+      <created>1673258609287</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1673258609289</updated>
+    </task>
+    <task id="LOCAL-00070" summary="test">
+      <created>1673258659484</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1673258659484</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -724,22 +725,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>303</line>
+          <line>301</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>329</line>
+          <line>327</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>94</line>
+          <line>92</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train_semantic.py</url>
-          <line>150</line>
+          <line>148</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

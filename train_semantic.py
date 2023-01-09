@@ -62,10 +62,8 @@ def train_step_nad(opt, train_loader, nets, optimizer, criterions, epoch):
         activation1_s, activation2_s, activation3_s, output_s = snet(img)
         activation1_t, activation2_t, activation3_t, _ = tnet(img)
 
-        print('DEBUG activation1_s.shape:{}'.format(activation1_s.shape))
-
         cls_loss = criterionCls(output_s, target)
-        at3_loss = 0#criterionAT(activation3_s, activation3_t.detach()) * opt.beta3
+        at3_loss = criterionAT(activation3_s, activation3_t.detach()) * opt.beta3
         at2_loss = criterionAT(activation2_s, activation2_t.detach()) * opt.beta2
         at1_loss = criterionAT(activation1_s, activation1_t.detach()) * opt.beta1
         at_loss = at1_loss + at2_loss + at3_loss + cls_loss

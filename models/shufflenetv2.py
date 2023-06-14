@@ -3,7 +3,6 @@ import torch.nn.functional as F
 from torchvision import models
 from torchsummary import summary
 import torch
-from .anp_batchnorm import *
 
 def shufflenetv2(num_classes=10, pretrained=1, norm_layer=nn.BatchNorm2d, **kwargs):
     '''

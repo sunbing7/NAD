@@ -25,7 +25,7 @@ def shufflenetv2(num_classes=10, pretrained=1, norm_layer=nn.BatchNorm2d, **kwar
 
 # shufflenet implementation
 
-def channel_shuffle(x: Tensor, groups: int) -> Tensor:
+def channel_shuffle(x, groups: int):
     batchsize, num_channels, height, width = x.size()
     channels_per_group = num_channels // groups
 
@@ -89,7 +89,7 @@ class InvertedResidual(nn.Module):
     ) -> nn.Conv2d:
         return nn.Conv2d(i, o, kernel_size, stride, padding, bias=bias, groups=i)
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x):
         if self.stride == 1:
             x1, x2 = x.chunk(2, dim=1)
             out = torch.cat((x1, self.branch2(x2)), dim=1)
@@ -150,7 +150,7 @@ class ShuffleNetV2(nn.Module):
 
         self.fc = nn.Linear(output_channels, num_classes)
 
-    def _forward_impl(self, x: Tensor) -> Tensor:
+    def _forward_impl(self, x):
         # See note [TorchScript super()]
         x = self.conv1(x)
         x = self.maxpool(x)
@@ -165,6 +165,6 @@ class ShuffleNetV2(nn.Module):
         x = self.fc(x)
         return activation1, activation2, activation3, x
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x):
         return self._forward_impl(x)
 

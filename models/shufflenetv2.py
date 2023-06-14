@@ -154,8 +154,8 @@ class ShuffleNetV2(nn.Module):
         # See note [TorchScript super()]
         x = self.conv1(x)
         x = self.maxpool(x)
-        x = self.stage2(x)
         activation1 = x
+        x = self.stage2(x)
         x = self.stage3(x)
         x = self.stage4(x)
         activation2 = x

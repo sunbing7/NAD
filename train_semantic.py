@@ -143,71 +143,6 @@ def test(opt, test_clean_loader, test_bad_loader, nets, criterions, epoch):
     return acc_clean, acc_bd
 
 
-def train(opt):
-    # Load models
-    print('----------- Network Initialization --------------')
-    student = select_model(dataset=opt.data_name,
-                           model_name=opt.s_name,
-                           pretrained=False,
-                           pretrained_models_path=opt.s_model,
-                           n_classes=opt.num_class)
-    print('finished student model init...')
-
-    if opt.cuda:
-        student = student.to(opt.device)
-
-    nets = {'snet': student}
-
-    # initialize optimizer
-    optimizer = torch.optim.Adam(student.parameters(),
-                                lr=opt.lr,
-                                #momentum=opt.momentum,
-                                weight_decay=opt.weight_decay,
-                                #nesterov=True
-                                )
-
-    # define loss functions
-    if opt.cuda:
-        criterionCls = nn.CrossEntropyLoss().cuda()
-    else:
-        criterionCls = nn.CrossEntropyLoss()
-
-    print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
-        get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
-
-    print('----------- Train Initialization --------------')
-    for epoch in range(1, opt.epochs):
-
-        # train every epoch
-        criterions = {'criterionCls': criterionCls}
-        train_step(opt, train_mix_loader, nets, optimizer, criterions, epoch)
-        train_step(opt, train_adv_loader, nets, optimizer, criterions, 0)
-
-        # evaluate on testing set
-        print('testing the models......')
-        acc_clean, acc_bad = test(opt, test_clean_loader, test_adv_loader, nets, criterions, epoch)
-
-        #print('opt.save:{}'.format(opt.save))
-        # remember the best precision and save checkpoint
-        if opt.save:
-            is_best = acc_bad[0] >= opt.threshold_bad
-            opt.threshold_bad = min(acc_bad[0], opt.threshold_bad)
-
-            best_clean_acc = acc_clean[0]
-            best_bad_acc = acc_bad[0]
-
-            s_name = opt.s_name + opt.out_model
-            #print('s_name:{}'.format(s_name))
-            save_checkpoint({
-                'epoch': epoch,
-                'state_dict': student.state_dict(),
-                'best_clean_acc': best_clean_acc,
-                'best_bad_acc': best_bad_acc,
-                'optimizer': optimizer.state_dict(),
-            }, is_best, opt.checkpoint_root, s_name)
-
-
 def sem_nad(opt):
     # Load models
     print('----------- Network Initialization --------------')
@@ -252,7 +187,7 @@ def sem_nad(opt):
         criterionAT = AT(opt.p)
 
     print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+    train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
         get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
@@ -321,7 +256,7 @@ def test_model(opt):
     nets = {'snet': student}
 
     print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+    train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
         get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Test --------------')
@@ -360,7 +295,7 @@ def sem_attack(opt):
         criterionCls = nn.CrossEntropyLoss()
 
     print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+    train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
         get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
@@ -427,7 +362,7 @@ def attack_finetune(opt):
         criterionCls = nn.CrossEntropyLoss()
 
     print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+    train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
         get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
@@ -437,7 +372,7 @@ def attack_finetune(opt):
 
         # train every epoch
         criterions = {'criterionCls': criterionCls}
-        train_step(opt, train_mix_loader, nets, optimizer, criterions, epoch)
+        train_step(opt, train_clean_loader, nets, optimizer, criterions, epoch)
 
         # evaluate on testing set
         print('testing the models......')
@@ -496,7 +431,7 @@ def sem_finetune(opt):
         criterionCls = nn.CrossEntropyLoss()
 
     print('----------- DATA Initialization --------------')
-    train_mix_loader, train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
+    train_clean_loader, train_adv_loader, test_clean_loader, test_adv_loader = \
         get_custom_loader(opt.data_path, opt.batch_size, opt.target_label, opt.data_name, opt.t_attack)
 
     print('----------- Train Initialization --------------')
@@ -551,9 +486,7 @@ def main():
     state = {k: v for k, v in opt._get_kwargs()}
     for key, value in state.items():
         print("{} : {}".format(key, value))
-    if opt.mode == 'train':
-        train(opt)
-    elif opt.mode == 'test':
+    if opt.mode == 'test':
         test_model(opt)
     elif opt.mode == 'sem_attack':
         sem_attack(opt)

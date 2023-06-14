@@ -68,13 +68,13 @@ class MobileNetV2(nn.Module):
 
     def forward(self, x):
         out = F.relu(self.bn1(self.conv1(x)))
-        activation1 = x
+        activation1 = out
         out = self.layers(out)
-        activation2 = x
+        activation2 = out
         out = F.relu(self.bn2(self.conv2(out)))
         # NOTE: change pooling kernel_size 7 -> 4 for CIFAR10
         out = F.avg_pool2d(out, 4)
-        activation3 = x
+        activation3 = out
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         return activation1, activation2, activation3, out

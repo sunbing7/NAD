@@ -3,7 +3,11 @@ from models.resnet import *
 from models.cnn import *
 from models.resnet18 import *
 from models.vgg_cifar import *
+from models.resnet_cifar import *
 from models.mobilenetv2 import *
+from models.densenet import *
+from models.mobilenet import *
+from models.shufflenetv2 import *
 import os
 
 def select_model(dataset,
@@ -13,7 +17,8 @@ def select_model(dataset,
                  n_classes=10):
 
     assert model_name in ['WRN-16-1', 'WRN-16-2', 'WRN-40-1', 'WRN-40-2', 'ResNet34', 'WRN-10-2', 'WRN-10-1',
-                          'CNN', 'resnet18', 'vgg11_bn', 'MobileNetV2']
+                          'CNN', 'resnet18', 'resnet50', 'vgg11_bn', 'MobileNetV2', 'MobileNet', 'densenet',
+                          'shufflenetv2']
     if model_name=='WRN-16-1':
         model = WideResNet(depth=16, num_classes=n_classes, widen_factor=1, dropRate=0)
     elif model_name=='WRN-16-2':
@@ -32,10 +37,16 @@ def select_model(dataset,
         model = cnn(num_classes=n_classes)
     elif model_name=='resnet18':
         model = resnet18(num_classes=n_classes)
+    elif model_name=='resnet50':
+        model = resnet50(num_classes=n_classes)
     elif model_name=='vgg11_bn':
         model = vgg11_bn(num_classes=n_classes)
     elif model_name=='MobileNetV2':
         model = MobileNetV2(num_classes=n_classes)
+    elif model_name=='MobileNet':
+        model = MobileNet(num_classes=n_classes)
+    elif model_name=='densenet':
+        model = densenet(num_classes=n_classes)
     else:
         raise NotImplementedError
 
@@ -48,9 +59,8 @@ def select_model(dataset,
             model.load_state_dict(checkpoint)
         else:
             model.load_state_dict(checkpoint['state_dict'])
-
             #print("=> loaded checkpoint '{}' (epoch {}) (accuracy {})".format(model_path, checkpoint['epoch'], checkpoint['best_prec']))
-            print("=> loaded checkpoint '{}' (epoch {}) ".format(model_path, checkpoint['epoch']))
+            #print("=> loaded checkpoint '{}' (epoch {}) ".format(model_path, checkpoint['epoch']))
 
 
     return model

@@ -50,8 +50,8 @@ class MobileNet(nn.Module):
         out = self.layers(out)
         activation2 = out
         out = F.avg_pool2d(out, self.pool_size)
-        out = out.view(out.size(0), -1)
         activation3 = out
+        out = out.view(out.size(0), -1)
         out = self.linear(out)
         return activation1, activation2, activation3, out
 

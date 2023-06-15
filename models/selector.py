@@ -47,6 +47,8 @@ def select_model(dataset,
         model = MobileNet(num_classes=n_classes)
     elif model_name=='densenet':
         model = densenet(num_classes=n_classes)
+    elif model_name=='shufflenetv2':
+        model = shufflenetv2(num_classes=n_classes)
     else:
         raise NotImplementedError
 
